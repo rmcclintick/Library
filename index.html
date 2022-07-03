@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Library</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,14 +15,18 @@
         </div>
     </header>
     <div class="popup">
-        <form id="add-book-form" action="script.js">
-            <legend>New Book</legend>
+        <form id="add-book-form">
+            <div class="form-header">
+                <legend>New Book</legend>
+                <div id="form-close">&times</div>
+            </div>
+            
             <input type="text" name="bookTitle" id="bookTitle" placeholder="Title">
             <input type="text" name="bookAuthor" id="bookAuthor" placeholder="Author">
             <input type="number" name="bookPages" id="bookPages" placeholder="Pages">
             <label for="bookRead">Read?</label>
             <input type="checkbox" name="bookRead" id="bookRead">
-            <button>Add Book</button>
+            <button id="form-add-btn" type="button">Add Book</button>
         </form>
         
     </div>

@@ -73,3 +73,14 @@ header {
     flex-direction: column;
     gap: 8px;
 }
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#form-close {
+    font-size: larger;
+    cursor: pointer;
+}

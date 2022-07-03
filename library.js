@@ -1,8 +1,18 @@
 let myLibrary = [];
 const bookArea = document.querySelector('.book-area')
+
+//const + eventListeners for popup form
 const popUp = document.querySelector('.popup')
 const addBookBtn = document.getElementById('add-book-header')
 addBookBtn.addEventListener('click', () => popUp.style.display = 'block')
+
+const closeFormBtn = document.getElementById('form-close')
+closeFormBtn.addEventListener('click', () => popUp.style.display = 'none')
+
+const submitBtn = document.getElementById('form-add-btn')
+submitBtn.addEventListener('click', addBookToLibrary)
+
+
 
 //Book constructor
 function Book(title, author, pages, beenRead) {
@@ -21,8 +31,24 @@ function Book(title, author, pages, beenRead) {
     }
 }
 
-function addBookToLibrary(book) {
-    myLibrary.push(book)
+function addBookToLibrary() {
+    let title = document.querySelector("#bookTitle").value
+    let author = document.querySelector("#bookAuthor").value
+    let pages = document.querySelector("#bookPages").value
+    let read = document.querySelector("#bookRead").checked
+
+    let book = new Book(title, author, pages, read)
+    myLibrary.push(book);
+
+    //clear form for next time
+    document.querySelector("#bookTitle").value = ""
+    document.querySelector("#bookAuthor").value = ""
+    document.querySelector("#bookPages").value = ""
+    document.querySelector("#bookRead").checked = false
+
+    //hide popup form
+    popUp.style.display = 'none'
+
     displayBooks()
 }
 
