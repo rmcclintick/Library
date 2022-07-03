@@ -36,12 +36,40 @@ header {
 
 .book-area {
     width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .book {
-    background-color: var(--prussian-blue);
+    background-color: white;
     padding:16px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 4px;
-    border-left: 4px orange solid;
+    border-left: 4px solid var(--imperial-red);
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+#add-book-form {
+    background-color: white;
+    padding:16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 4px;
+    border-left: 4px solid var(--imperial-red);
+    margin: 15% auto;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }

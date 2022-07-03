@@ -11,9 +11,21 @@
     <header>
         <div class="title">My Library</div>
         <div class="header-btns">
-            <button>Add Book</button>
+            <button id="add-book-header">Add Book</button>
         </div>
     </header>
+    <div class="popup">
+        <form id="add-book-form" action="script.js">
+            <legend>New Book</legend>
+            <input type="text" name="bookTitle" id="bookTitle" placeholder="Title">
+            <input type="text" name="bookAuthor" id="bookAuthor" placeholder="Author">
+            <input type="number" name="bookPages" id="bookPages" placeholder="Pages">
+            <label for="bookRead">Read?</label>
+            <input type="checkbox" name="bookRead" id="bookRead">
+            <button>Add Book</button>
+        </form>
+        
+    </div>
     <div class="hero">
         <div class="book-area">
 
