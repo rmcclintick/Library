@@ -1,0 +1,47 @@
+:root {
+    --imperial-red: #e63946ff;
+    --honeydew: #f1faeeff;
+    --powder-blue: #a8dadcff;
+    --celadon-blue: #457b9dff;
+    --prussian-blue: #1d3557ff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--honeydew);
+}
+
+header {
+    background-color: var(--celadon-blue);
+    color: honeydew;
+    height: 10vh;
+}
+
+.title {
+    text-align: center;
+    font-size: x-large;
+    padding-top: 3vh;
+}
+
+.header-btns {
+    display: flex;
+    padding: 10px;
+    justify-content: right;
+}
+
+.book-area {
+    width: 60vw;
+}
+
+.book {
+    background-color: var(--prussian-blue);
+    padding:16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 4px;
+    border-left: 4px orange solid;
+}
