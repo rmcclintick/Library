@@ -20,15 +20,15 @@ function Book(title, author, pages, beenRead) {
     this.author = author
     this.pages = pages
     this.beenRead = beenRead
+}
 
-    this.info = function() {
-        let readStatement = ""
-        if (beenRead)
+Book.prototype.info = function() {
+    let readStatement = ""
+        if (this.beenRead)
             readStatement = "read"
         else
             readStatement = "not read yet"
-        return title + " by " + author + ", " + pages + " pages, " + readStatement
-    }
+        return this.title + " by " + this.author + ", " + this.pages + " pages, " + readStatement
 }
 
 function addBookToLibrary() {
@@ -60,9 +60,31 @@ function displayBooks() {
     myLibrary.forEach(makeBook)
 
     function makeBook(currentBook) {
+        //create card
+        let bookCard = document.createElement('div')
+        bookCard.classList.add('card')
+
+        //create book div
         let book = document.createElement('div')
         book.classList.add('book')
         book.innerHTML = currentBook.info()
-        bookArea.appendChild(book)
+        bookCard.appendChild(book)
+
+        //create read button
+        let readBtn = document.createElement('button')
+        bookCard.appendChild(readBtn)
+        readBtn.innerHTML = "I read this!"
+        readBtn.addEventListener('click', () => {
+            currentBook.beenRead = !currentBook.beenRead
+            if (currentBook.beenRead) {
+                bookCard.classList.add('been-read')
+            }
+            else bookCard.classList.remove('been-read')
+            book.innerHTML = currentBook.info()
+        })
+        
+        //create delete button
+        
+        bookArea.appendChild(bookCard)
     }
 }
