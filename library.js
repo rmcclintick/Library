@@ -79,6 +79,7 @@ function displayBooks() {
 
         //create buttons div
         let btnContainer = document.createElement('div')
+        btnContainer.classList.add('btn-container')
         bookCard.appendChild(btnContainer)
 
 
@@ -89,6 +90,7 @@ function displayBooks() {
         readBtn.addEventListener('click', () => {
             myLibrary[i].beenRead = !myLibrary[i].beenRead
             book.innerHTML = myLibrary[i].info()
+            displayBooks()
         })
 
         //green side border if book has been read
