@@ -71,6 +71,9 @@ header {
     font-weight: bold;
 }
  
+button {
+    cursor:pointer;
+}
 
 .popup {
     display: none;
