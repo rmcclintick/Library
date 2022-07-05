@@ -22,13 +22,13 @@ function Book(title, author, pages, beenRead) {
     this.beenRead = beenRead
 }
 
-Book.prototype.info = function() {
+Book.prototype.info = function () {
     let readStatement = ""
-        if (this.beenRead)
-            readStatement = "read"
-        else
-            readStatement = "not read yet"
-        return this.title + " by " + this.author + ", " + this.pages + " pages, " + readStatement
+    if (this.beenRead)
+        readStatement = "read"
+    else
+        readStatement = "not read yet"
+    return this.title + " by " + this.author + ", " + this.pages + " pages, " + readStatement
 }
 
 function addBookToLibrary() {
@@ -54,20 +54,22 @@ function addBookToLibrary() {
 
 function displayBooks() {
     //clear book area first to avoid duplicates
-    while(bookArea.firstChild) {
+    while (bookArea.firstChild) {
         bookArea.removeChild(bookArea.lastChild)
     }
-    myLibrary.forEach(makeBook)
 
-    function makeBook(currentBook) {
+
+    for (let i = 0; i < myLibrary.length; i++) {
         //create card
         let bookCard = document.createElement('div')
         bookCard.classList.add('card')
 
         //create book div
         let book = document.createElement('div')
+        //give book element the attribute index associated with myLibrary array
+        book.setAttribute("index", i)
         book.classList.add('book')
-        book.innerHTML = currentBook.info()
+        book.innerHTML = myLibrary[i].info()
         bookCard.appendChild(book)
 
         //create read button
@@ -75,16 +77,17 @@ function displayBooks() {
         bookCard.appendChild(readBtn)
         readBtn.innerHTML = "I read this!"
         readBtn.addEventListener('click', () => {
-            currentBook.beenRead = !currentBook.beenRead
-            if (currentBook.beenRead) {
+            myLibrary[i].beenRead = !myLibrary[i].beenRead
+            if (myLibrary[i].beenRead) {
                 bookCard.classList.add('been-read')
             }
             else bookCard.classList.remove('been-read')
-            book.innerHTML = currentBook.info()
+            book.innerHTML = myLibrary[i].info()
         })
-        
+
         //create delete button
-        
+
+
         bookArea.appendChild(bookCard)
     }
 }
