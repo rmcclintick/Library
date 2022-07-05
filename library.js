@@ -52,6 +52,11 @@ function addBookToLibrary() {
     displayBooks()
 }
 
+function removeBookFromLibrary(index) {
+    myLibrary.splice(index, 1)
+    displayBooks()
+}
+
 function displayBooks() {
     //clear book area first to avoid duplicates
     while (bookArea.firstChild) {
@@ -72,21 +77,36 @@ function displayBooks() {
         book.innerHTML = myLibrary[i].info()
         bookCard.appendChild(book)
 
+        //create buttons div
+        let btnContainer = document.createElement('div')
+        bookCard.appendChild(btnContainer)
+
+
         //create read button
         let readBtn = document.createElement('button')
-        bookCard.appendChild(readBtn)
+        btnContainer.appendChild(readBtn)
         readBtn.innerHTML = "I read this!"
         readBtn.addEventListener('click', () => {
             myLibrary[i].beenRead = !myLibrary[i].beenRead
-            if (myLibrary[i].beenRead) {
-                bookCard.classList.add('been-read')
-            }
-            else bookCard.classList.remove('been-read')
             book.innerHTML = myLibrary[i].info()
         })
 
-        //create delete button
+        //green side border if book has been read
+        if (myLibrary[i].beenRead) {
+            bookCard.classList.add('been-read')
+        }
+        else bookCard.classList.remove('been-read')
 
+        //create delete button
+        let deleteBtn = document.createElement('button')
+        deleteBtn.innerHTML = "delete"
+        deleteBtn.setAttribute("index", i)
+        deleteBtn.addEventListener('click', () => {
+            indexToRemove = deleteBtn.getAttribute("index")
+            removeBookFromLibrary(indexToRemove)
+        })
+
+        btnContainer.appendChild(deleteBtn)
 
         bookArea.appendChild(bookCard)
     }
