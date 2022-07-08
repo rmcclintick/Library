@@ -14,6 +14,9 @@ submitBtn.addEventListener('click', addBookToLibrary)
 
 
 
+
+
+
 //Book constructor
 function Book(title, author, pages, beenRead) {
     this.title = title
@@ -30,6 +33,20 @@ Book.prototype.info = function () {
         readStatement = "not read yet"
     return this.title + " by " + this.author + ", " + this.pages + " pages, " + readStatement
 }
+
+//check local storage for previously entered books
+myLibrary = JSON.parse(localStorage.getItem("books") || "[]")
+for (let i = 0; i < myLibrary.length; i++) {
+    myLibrary[i].info = function () {
+        let readStatement = ""
+        if (this.beenRead)
+            readStatement = "read"
+        else
+            readStatement = "not read yet"
+        return this.title + " by " + this.author + ", " + this.pages + " pages, " + readStatement
+    }
+}
+displayBooks();
 
 function addBookToLibrary() {
     let title = document.querySelector("#bookTitle").value
@@ -49,12 +66,14 @@ function addBookToLibrary() {
     //hide popup form
     popUp.style.display = 'none'
 
-    displayBooks()
+    saveToLocalStorage();
+    displayBooks();
 }
 
 function removeBookFromLibrary(index) {
-    myLibrary.splice(index, 1)
-    displayBooks()
+    myLibrary.splice(index, 1);
+    saveToLocalStorage();
+    displayBooks();
 }
 
 function displayBooks() {
@@ -74,7 +93,10 @@ function displayBooks() {
         //give book element the attribute index associated with myLibrary array
         book.setAttribute("index", i)
         book.classList.add('book')
-        book.innerHTML = myLibrary[i].info()
+        //book object
+        let tempBook = myLibrary[i];
+        //tempBook.prototype = Object.create(Book.prototype);
+        book.innerHTML = tempBook.info();
         bookCard.appendChild(book)
 
         //create buttons div
@@ -95,9 +117,13 @@ function displayBooks() {
 
         //green side border if book has been read
         if (myLibrary[i].beenRead) {
-            bookCard.classList.add('been-read')
+            bookCard.classList.add('been-read');
+            saveToLocalStorage();
         }
-        else bookCard.classList.remove('been-read')
+        else {
+            bookCard.classList.remove('been-read')
+            saveToLocalStorage();
+        }
 
         //create delete button
         let deleteBtn = document.createElement('button')
@@ -112,4 +138,9 @@ function displayBooks() {
 
         bookArea.appendChild(bookCard)
     }
+}
+
+function saveToLocalStorage()
+{
+    localStorage.books = JSON.stringify(myLibrary);
 }
