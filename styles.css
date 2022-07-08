@@ -20,6 +20,8 @@ header {
     background-color: var(--celadon-blue);
     color: honeydew;
     height: 10vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
@@ -107,4 +109,23 @@ button {
 #form-close {
     font-size: larger;
     cursor: pointer;
+}
+
+@media only screen and (max-device-width: 768px) {
+    .book-area {
+        width: 85vw;
+    }
+
+    .card {
+        flex-direction: column;
+    }
+
+    .btn-container {
+        justify-content: right;
+    }
+
+    .header-btns {
+        padding: 0;
+        padding-right: 4px;
+    }
 }
